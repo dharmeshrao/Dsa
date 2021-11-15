@@ -1,38 +1,31 @@
-const merge = (arr1, arr2) => {
-  let res = [];
-  let i = 0,
-    j = 0;
-  while (i < arr1.length && j < arr2.length) {
-    if (arr1[i] < arr2[j]) {
-      res.push(arr1[i]);
-      i++;
-    } else {
-      res.push(arr2[j]);
-      j++;
+const findit = (array,l,r)=>{
+  if( l < r ){
+    let pivot = partition(array,l,r)
+    findit(array,l,pivot-1)
+    findit(array,pivot+1,r)
+  }
+}
+
+const partition = (arra,l,r)=>{
+  let i = l,j = r, pivot = arra[l]
+  while( i < j){
+    while( arra[i] <= pivot)i++;
+    while(arra[j] > pivot)j--;
+    if(i < j){
+      [arra[i],arra[j]] = [arra[j],arra[i]]
     }
   }
-  while (i < arr1.length) {
-    res.push(arr1[i]);
-    i++;
-  }
-  while (j < arr2.length) {
-    res.push(arr2[j]);
-    j++;
-  }
-  return res;
-};
-const findit = (array) => {
-  if (array.length <= 1) return array;
-  let mid = Math.floor(array.length / 2);
-  let left = findit(array.slice(0, mid));
-  let right = findit(array.slice(mid));
-  return merge(left, right);
-};
-
+  [arra[j],arra[l]] = [arra[l],arra[j]]
+  return j;
+}
 function runProgram(input) {
   input = input.trim().split("\n");
   let array = input[1].trim().split(" ").map(Number);
-  console.log(findit(array).join(" "));
+  let l = 0,
+    r = array.length - 1;
+  findit(array, l, r);
+  // console.log(partition(array,l,r));
+  console.log(array.join(" "));
 }
 if (process.env.USERNAME === "adam") {
   runProgram(`5
