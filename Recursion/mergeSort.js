@@ -1,25 +1,26 @@
-const merge = (arr1, arr2) => {
-  let res = [];
-  let i = 0,
-    j = 0;
-  while (i < arr1.length && j < arr2.length) {
-    if (arr1[i] < arr2[j]) {
-      res.push(arr1[i]);
-      i++;
-    } else {
-      res.push(arr2[j]);
-      j++;
-    }
+const merge = (l1, l2) => {
+  let res = []
+  let a = l1.length, b = l2.length;
+  let i = 0,j = 0;
+  while(i < a && j < b){
+      if(l1[i] < l2[j]){
+          res.push(l1[i])
+          i++
+      }
+      else{
+          res.push(l2[j])
+          j++
+      }
   }
-  while (i < arr1.length) {
-    res.push(arr1[i]);
-    i++;
+      while(i < l1.length){
+          res.push(l1[i])
+          i++
+      }
+      while(j < l2.length){
+          res.push(l2[j])
+          j++
   }
-  while (j < arr2.length) {
-    res.push(arr2[j]);
-    j++;
-  }
-  return res;
+  return res
 };
 const findit = (array) => {
   if (array.length <= 1) return array;
