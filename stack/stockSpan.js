@@ -1,32 +1,30 @@
-function findit(array) {
-  let stack = [],
-    res = [];
-  for (let i = array.length - 1; i >= 0; i--) {
-    if (stack.length == 0) res.push(-1);
-    if (stack.length > 0 && stack[stack.length - 1][0] > array[i])
-      res.push(stack[stack.length - 1][1]);
-    else if (stack.length > 0 && stack[stack.length - 1][0] <= array[i]) {
-      while (stack.length > 0 && stack[stack.length - 1][0] <= array[i]) {
-        stack.pop();
-      }
-      if (stack.length == 0) res.push(-1);
-      else res.push(stack[stack.length - 1][1]);
+function findit(array,n){
+  let stack = [], res = [];
+  stack.push(0),res.push(1);
+  for(let i = 1;i< n;i++){
+    while(stack.length > 0 && array[stack[stack.length-1]] <= array[i]){
+      stack.pop();
     }
-    stack.push([array[i],i]);
+    if(stack.length == 0){
+      res.push(i+1)
+    }
+    else{
+      res.push(i - stack[stack.length-1])
+    }
+    stack.push(i)
+  }console.log(res.join(' '));
   }
-  console.log(res);
-}
-
-function runProgram(input) {
-  input = input.trim().split("\n");
-  let cases = +input[0];
-  let line = 1;
-  for (let i = 0; i < cases; i++) {
-      let n = +input[line++]
-    let array = input[line++].trim().split(" ").map(Number);
-    findit(array);
-  }
-}
+  
+  function runProgram(input) {
+   input = input.trim().split('\n')
+   let cases = +input[0]
+   let line = 1;
+   for(let i = 0; i < cases; i++){
+   let n = +input[line++]
+   let array = input[line++].trim().split(' ').map(Number)
+   findit(array,n)
+   }
+    }
 if (process.env.USERNAME === "adam") {
   runProgram(`2
   7
