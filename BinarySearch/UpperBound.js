@@ -1,35 +1,24 @@
-function findit(array,l,h){
-  if( l < h){
-    let pivot = partition(array,l,h)
-    findit(array,l , pivot-1)
-    findit(array,pivot+1,h)
+function findit(arrary, n, k) {
+  let i = 0,
+    j = n - 1;
+  while (i <= j) {
+    let mid = Math.floor(i + (j - i) / 2);
+    if(arrary[mid] >= k)return mid
+    if (arrary[mid] > k) j = mid - 1;
+    if (arrary[mid] < k) i = mid + i;
   }
-}
-
-
-function partition(array,l,r){
-  let pivot = array[l], i = l,j = r;
-  while(i < j){
-    while(array[i] <= pivot)i++;
-    while(array[j] > pivot)j--;
-    if(i < j){
-      [array[i],array[j]] = [array[j],array[i]]
-    }
-  }
-  [array[j],array[l]] = [array[l],array[j]]
-  return j;
+  return -1
 }
 
 function runProgram(input) {
   input = input.trim().split("\n");
+  let [n, k] = input[0].trim().split(" ").map(Number);
   let array = input[1].trim().split(" ").map(Number);
-  findit(array,0,4)
-  console.log(array);
-
+  console.log(findit(array, n, k));
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`5
-  3 8 10 9 8`);
+  runProgram(`10 3
+    0 2 4 4 5 5 7 7 9 10`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
