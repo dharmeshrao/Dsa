@@ -1,13 +1,21 @@
 function runProgram(input) {
   input = input.trim().split("\n");
   let n = +input[0];
-  if(n <= 50){
-    
+  let arr1 = input[1].trim().split(" ").map(Number);
+  let arr2 = input[2].trim().split(" ").map(Number);
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr1[i] == arr2[j]) {
+        console.log(arr1[i]);
+        break;
+      }
+    }
   }
-
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`930`);
+  runProgram(`3
+    4 5 7
+    9 2 5`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

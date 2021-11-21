@@ -1,13 +1,28 @@
 function runProgram(input) {
   input = input.trim().split("\n");
-  let n = +input[0];
-  if(n <= 50){
-    
-  }
+  let day = input[0].trim();
+  let n = +input[1];
+  let array = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] == day) {
+      let x = i + n;
+      x = x % 7;
+      console.log(array[x]);
+    }
+  }
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`930`);
+  runProgram(`Wednesday
+    8`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

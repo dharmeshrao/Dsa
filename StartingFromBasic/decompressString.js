@@ -1,13 +1,21 @@
 function runProgram(input) {
   input = input.trim().split("\n");
-  let n = +input[0];
-  if(n <= 50){
-    
+  let str = input[0].trim();
+  let num = "1234567890";
+  let res = "";
+  for (let i = 0; i < str.length; i++) {
+    for (let j = 0; j < num.length; j++) {
+      if (str[i] == num[j]) {
+        for (let k = 0; k < +num[j]; k++) {
+          res += str[i - 1];
+        }
+      }
+    }
   }
-
+  console.log(res);
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`930`);
+  runProgram(`a3b2`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
