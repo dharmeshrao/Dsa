@@ -1,27 +1,27 @@
-function findit(array, n, k) {
-  let low = 0,
-    high = n - 1;
-  let res = -1;
-  while (low <= high) {
-    let mid = Math.floor(low + (high - low) / 2);
-    if (array[mid] <= k) low = mid + 1;
-    else {
-      res = mid;
-      high = mid - 1;
-    }
+function weighted(array, n) {
+  let sum = 0;
+  for (let i = 0; i < n; i++) {
+    sum += (i + 1) * array[i];
   }
-  return res;
+  console.log(sum);
 }
 
 function runProgram(input) {
   input = input.trim().split("\n");
-  let [n, k] = input[0].trim().split(" ").map(Number);
-  let array = input[1].trim().split(" ").map(Number);
-  console.log(findit(array, n, k));
+  let cases = +input[0];
+  let line = 1;
+  for (let i = 0; i < cases; i++) {
+    let n = +input[line++];
+    let array = input[line++].trim().split(" ").map(Number);
+    weighted(array, n);
+  }
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`10 4
-  0 2 4 4 5 5 7 7 9 10`);
+  runProgram(`2
+    5
+    1 2 3 4 5
+    2
+    100 1`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

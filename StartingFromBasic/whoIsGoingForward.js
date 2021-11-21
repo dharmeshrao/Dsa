@@ -1,27 +1,17 @@
-function findit(array, n, k) {
-  let low = 0,
-    high = n - 1;
-  let res = -1;
-  while (low <= high) {
-    let mid = Math.floor(low + (high - low) / 2);
-    if (array[mid] <= k) low = mid + 1;
-    else {
-      res = mid;
-      high = mid - 1;
-    }
-  }
-  return res;
-}
-
 function runProgram(input) {
   input = input.trim().split("\n");
   let [n, k] = input[0].trim().split(" ").map(Number);
   let array = input[1].trim().split(" ").map(Number);
-  console.log(findit(array, n, k));
+  let x = array[k-1];
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    if (array[i] >= x) count++;
+  }
+  x == 0 ? console.log(0) : console.log(count);
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`10 4
-  0 2 4 4 5 5 7 7 9 10`);
+  runProgram(`8 5
+    10 9 8 7 7 7 5 5`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
