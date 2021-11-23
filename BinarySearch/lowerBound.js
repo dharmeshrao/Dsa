@@ -1,17 +1,16 @@
 function findit(array, i, j, k) {
-  let res = 0;
+  let res = -1;
   while (i <= j) {
     let mid = Math.floor(i + (j - i) / 2);
     if (array[mid] == k) {
       res = mid;
-      i = mid+1
+      j = mid - 1;
     }
-    if (array[mid] >= k) j = mid - 1;
-    if (array[mid] <= k) i = mid + 1;
+    if (array[mid] > k) j = mid - 1;
+    if (array[mid] < k) i = mid + 1;
   }
   return res;
 }
-
 function runProgram(input) {
   input = input.trim().split("\n");
   let [n, k] = input[0].trim().split(" ").map(Number);
@@ -21,7 +20,7 @@ function runProgram(input) {
   console.log(findit(array, i, j, k));
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`10 3
+  runProgram(`10 4
   0 2 4 4 5 5 7 7 9 10`);
 } else {
   process.stdin.resume();

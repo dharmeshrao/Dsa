@@ -1,22 +1,23 @@
-//Enter code here
-function findit(array, k, low, high) {
-  let mid = Math.floor(low + (high - low) / 2);
-  if (array[mid] == k) return 1;
-  if (low > high) return -1;
-  if (array[mid] < k) return findit(array, k, mid + 1, high);
-  if (array[mid] > k) return findit(array, k, low, mid - 1);
+function find(array,k,n){
+    let low = 0,high = n-1;
+    while(low <= high){
+        let mid = Math.floor(low + (high - low)/2)
+        if(array[mid] == k)return 1;
+        if(array[mid] < k)low = mid+1;
+        if(array[mid] > k)high = mid-1;
+    }
+    return -1;
 }
 
 function runProgram(input) {
   input = input.trim().split("\n");
   let [n, k] = input[0].trim().split(" ").map(Number);
   let array = input[1].trim().split(" ").map(Number);
-  let [low, high] = [0, n - 1];
-  console.log(findit(array, k, low, high));
+  console.log(find(array, k, n));
 }
 if (process.env.USERNAME === "adam") {
   runProgram(`5 0
-      2 -2 0 3 4`);
+    2 -2 0 3 4`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
