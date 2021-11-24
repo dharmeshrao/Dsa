@@ -1,24 +1,46 @@
-function findit(array) {
+function first(array, k) {
   let low = 0,
     high = array.length - 1;
-  if (array[low] <= array[high]) return array[low];
+  let res = -1;
   while (low <= high) {
     let mid = Math.floor(low + (high - low) / 2);
-    if (array[mid] > array[mid + 1]) return array[mid + 1];
-    if (array[mid] < array[mid - 1]) return array[mid];
-    if (array[mid] >= array[low]) low = mid + 1;
-    if (array[mid] < array[high]) high = mid - 1;
+    if (array[mid] == k) {
+      res = mid;
+      high = mid - 1;
+    }
+    if (array[mid] > k) high = mid - 1;
+    if (array[mid] < k) low = mid + 1;
   }
-  return -1;
+  return res;
 }
+function last(array, k) {
+  let low = 0,
+    high = array.length - 1;
+  let res = -1;
+  while (low <= high) {
+    let mid = Math.floor(low + (high - low) / 2);
+    if (array[mid] == k) {
+      res = mid;
+      low = mid + 1;
+    }
+    if (array[mid] > k) high = mid - 1;
+    if (array[mid] < k) low = mid + 1;
+  }
+  return res;
+}
+
 function runProgram(input) {
   input = input.trim().split("\n");
   let array = input[1].trim().split(" ").map(Number);
-  console.log(findit(array));
+  let k = +input[2];
+  let a = first(array, k);
+  let b = last(array, k);
+  console.log(a, b, b - a + 1);
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`10
-  4 6 7 9 10 -1 0 1 2 3`);
+  runProgram(`6
+    1 1 1 2 2 2	
+    1`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

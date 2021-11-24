@@ -1,24 +1,23 @@
-function findit(array) {
-  let low = 0,
-    high = array.length - 1;
-  if (array[low] <= array[high]) return array[low];
-  while (low <= high) {
-    let mid = Math.floor(low + (high - low) / 2);
-    if (array[mid] > array[mid + 1]) return array[mid + 1];
-    if (array[mid] < array[mid - 1]) return array[mid];
-    if (array[mid] >= array[low]) low = mid + 1;
-    if (array[mid] < array[high]) high = mid - 1;
+function Recursive(array, n) {
+  if (n == 0) return;
+  for (let i = 0; i < n - 1; i++) {
+    if (array[i] > array[i + 1]) {
+      [array[i], array[i + 1]] = [array[i + 1], array[i]];
+    }
   }
-  return -1;
+  Recursive(array, n - 1);
 }
+
 function runProgram(input) {
   input = input.trim().split("\n");
+  let n = +input[0];
   let array = input[1].trim().split(" ").map(Number);
-  console.log(findit(array));
+  Recursive(array, n);
+  console.log(array.join(" "));
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`10
-  4 6 7 9 10 -1 0 1 2 3`);
+  runProgram(`5
+    3 5 0 9 8`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

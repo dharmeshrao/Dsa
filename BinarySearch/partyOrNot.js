@@ -1,24 +1,17 @@
-function findit(array) {
-  let low = 0,
-    high = array.length - 1;
-  if (array[low] <= array[high]) return array[low];
-  while (low <= high) {
-    let mid = Math.floor(low + (high - low) / 2);
-    if (array[mid] > array[mid + 1]) return array[mid + 1];
-    if (array[mid] < array[mid - 1]) return array[mid];
-    if (array[mid] >= array[low]) low = mid + 1;
-    if (array[mid] < array[high]) high = mid - 1;
-  }
-  return -1;
-}
 function runProgram(input) {
   input = input.trim().split("\n");
+  let [n, c, r] = input[0].trim().split(" ").map(Number);
   let array = input[1].trim().split(" ").map(Number);
-  console.log(findit(array));
+  array.sort((a, b) => a - b);
+  let sum = 0;
+  for (let i = 0; i < c; i++) {
+    sum += array[i];
+  }
+  sum <= r ? console.log("Party") : console.log(Sad);
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`10
-  4 6 7 9 10 -1 0 1 2 3`);
+  runProgram(`5 3 24
+    6 4 21 20 13`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
