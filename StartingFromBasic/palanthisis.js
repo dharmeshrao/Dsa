@@ -1,14 +1,20 @@
-function findit(array, n) {
-  let res = [1],
-    stack = [0];
-  for (let i = 1; i < n; i++) {
-    while (stack.length > 0 && array[stack[stack.length - 1]] <= array[i])
-      stack.pop();
-    if (stack.length == 0) res.push(i + 1);
-    else res.push(i - stack[stack.length - 1]);
-    stack.push(i);
+function findit(arr) {
+  let stack = [];
+  for (let x of arr) {
+    if (x == "[" || x == "{" || x == "(") stack.push(x);
+    else {
+      if (stack.length == 0) return false;
+      let a = stack.pop();
+      if (
+        (x == "]" && a != "[") ||
+        (x == ")" && a != "(") ||
+        (x == "}" && a != "{")
+      ) {
+        return false;
+      }
+    }
   }
-  console.log(res.join(" "));
+  return stack.length == 0;
 }
 
 function runProgram(input) {
@@ -16,17 +22,16 @@ function runProgram(input) {
   let cases = +input[0];
   let line = 1;
   for (let i = 0; i < cases; i++) {
-    let n = +input[line++];
-    let array = input[line++].trim().split(" ").map(Number);
-    findit(array, n);
+    let arr = input[line++].trim();
+    findit(arr) ? console.log("balanced") : console.log("not balanced");
   }
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`2
-    7
-    100 80 60 70 60 75 85
-    5
-    3 5 0 9 8`);
+  runProgram(`3
+    {([])}
+    ()
+    ([]
+    `);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
