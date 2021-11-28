@@ -1,4 +1,5 @@
 const merge = (l1, l2) => {
+  console.log(l1,l2);
   let res = []
   let a = l1.length, b = l2.length;
   let i = 0,j = 0;
@@ -23,17 +24,18 @@ const merge = (l1, l2) => {
   return res
 };
 const findit = (array) => {
-  if (array.length <= 1) return array;
-  let mid = Math.floor(array.length / 2);
-  let left = findit(array.slice(0, mid));
-  let right = findit(array.slice(mid));
-  return merge(left, right);
+if(array.length <= 1)return array;
+let mid = Math.floor(array.length/2)
+let left = findit(array.slice(0,mid))
+let right = findit(array.slice(mid))
+return merge(left,right)
 };
 
 function runProgram(input) {
   input = input.trim().split("\n");
   let array = input[1].trim().split(" ").map(Number);
-  console.log(findit(array).join(" "));
+  // console.log(findit(array).join(" "));
+  console.log(array.slice(0,2));
 }
 if (process.env.USERNAME === "adam") {
   runProgram(`5

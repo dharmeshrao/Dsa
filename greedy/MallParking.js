@@ -1,21 +1,22 @@
-const findit = (n, res, current) => {
-  if (n > 0) console.log(res.join(" "));
-  for (let i = current; i <= n; i++) {
-    res.push(i);
-    findit(n, res, i + 1);
-    res.pop();
-  }
-};
-
 function runProgram(input) {
   input = input.trim().split("\n");
-  let n = +input[0],
-    current = 1,
-    res = [];
-  findit(n, res, current);
+  let n = +input[0];
+  let array1 = input[1].trim().split(" ").map(Number);
+  let array2 = input[2].trim().split(" ").map(Number);
+  let count = 0;
+  for (let i = 0; i < array1.length; i++) {
+    if (array2[i] > array1[i + 1]) {
+      count++;
+    }
+  }
+  if (n == count) {
+    console.log("Not Possible");
+  } else console.log("Possible");
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`3`);
+  runProgram(`1
+  1 3 5
+  2 6 8`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

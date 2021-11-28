@@ -1,21 +1,21 @@
-const findit = (n, res, current) => {
-  if (n > 0) console.log(res.join(" "));
-  for (let i = current; i <= n; i++) {
+function findit(n, k, curr, res) {
+  if (res.length == k) console.log(res.join(" "));
+  for (let i = curr; i <= n; i++) {
     res.push(i);
-    findit(n, res, i + 1);
+    findit(n, k, i + 1, res);
     res.pop();
   }
-};
+}
 
 function runProgram(input) {
   input = input.trim().split("\n");
-  let n = +input[0],
-    current = 1,
+  let [n, k] = input[0].trim().split(" ").map(Number);
+  let curr = 1,
     res = [];
-  findit(n, res, current);
+  findit(n, k, curr, res);
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`3`);
+  runProgram(`4 2`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

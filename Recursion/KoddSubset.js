@@ -1,32 +1,38 @@
-const findit = (array, k, current, res, flag) => {
+function findit(array, curr, res, flag, k) {
   if (res.length > 0) {
-    let sum = 0;
+    let count = 0;
     for (let i = 0; i < res.length; i++) {
-      sum += res[i];
+      if (res[i] % 2 != 0) count++;
     }
-    if (sum == k) flag.push(0);
+    if (count >= k) flag.push(0);
   }
-  for (let i = current; i < array.length; i++) {
+  for (let i = curr; i < array.length; i++) {
     res.push(array[i]);
-    findit(array, k, i + 1, res, flag);
+    findit(array, i + 1, res, flag, k);
     res.pop();
   }
-};
+}
 
 function runProgram(input) {
   input = input.trim().split("\n");
-  let array = input[1].trim().split(" ").map(Number),
-    k = +input[2],
-    current = 0,
-    res = [],
-    flag = [];
-  findit(array, k, current, res, flag);
-  console.log(flag.length > 0 ? "Yes" : "No");
+  let cases = +input[0];
+  let line = 1;
+  for (let i = 0; i < cases; i++) {
+    let [n, k] = input[line++].trim().split(" ").map(Number);
+    let array = input[line++].trim().split(" ").map(Number);
+    let curr = 0,
+      res = [],
+      flag = [];
+    findit(array, curr, res, flag, k);
+    console.log(flag.length);
+  }
 }
 if (process.env.USERNAME === "adam") {
-  runProgram(`9
-    1 2 3
-    5`);
+  runProgram(`2
+    4 2
+    4 3 2 1
+    2 1
+    2 3`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
