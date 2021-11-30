@@ -1,8 +1,7 @@
 //Enter code here
 function findit(array, k, low, high) {
   let mid = Math.floor(low + (high - low) / 2);
-  if (array[mid] == k) return 1;
-  if (low > high) return -1;
+  if (array[mid] == k) return mid;
   if (array[mid] < k) return findit(array, k, mid + 1, high);
   if (array[mid] > k) return findit(array, k, low, mid - 1);
 }

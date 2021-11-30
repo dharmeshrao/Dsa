@@ -7,7 +7,7 @@ function findit(array, i, j, k) {
       j = mid - 1;
     }
     if (array[mid] > k) j = mid - 1;
-    if (array[mid] < k) i = mid + 1;
+    else i = mid + 1;
   }
   return res;
 }
