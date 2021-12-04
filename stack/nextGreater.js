@@ -1,20 +1,17 @@
 function findit(array) {
   let stack = [],
     res = [];
-  for (let i = array.length - 1; i >= 0; i--) {
-    if (stack.length == 0) res.push(-1);
-    else if (stack.length > 0 && stack[stack.length - 1] > array[i]) {
-      res.push(stack[stack.length - 1]);
-    } else if (stack.length > 0 && stack[stack.length - 1] <= array[i]) {
-      while (stack.length > 0 && stack[stack.length - 1] <= array[i]) {
-        stack.pop();
-      }
-      if (stack.length == 0) res.push(-1);
-      else res.push(stack[stack.length - 1]);
-    }
-    stack.push(array[i]);
+for(let i = array.length-1;i>= 0;i--){
+  if(stack.length == 0)res.push(-1)
+  else if(stack.length > 0 && stack[stack.length-1] > array[i])res.push(stack[stack.length-1])
+  else if(stack.length > 0 && stack[stack.length-1] <= array[i]){
+    while(stack.length > 0 && stack[stack.length-1] <= array[i])stack.pop()
+    if(stack.length > 0 )res.push(stack[stack.length-1])
+    else res.push(-1)
   }
-  console.log(res.reverse().join(" "));
+  stack.push(array[i])
+}
+console.log(res);
 }
 
 function runProgram(input) {
