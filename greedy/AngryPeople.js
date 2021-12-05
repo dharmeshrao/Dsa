@@ -1,23 +1,17 @@
-function findit(n, dp) {
-  // if(dp[n] == -1)return 1;
-  if (dp[n] != -1) return dp[n];
-  if (n == 0) return 1;
-  if (n < 0) return 0;
-  dp[n] = findit(n - 1, dp) + findit(n - 3, dp) + findit(n - 4, dp);
-  return dp[n];
-}
-
 function runProgram(input) {
   input = input.trim().split("\n");
-  let n = +input[0];
-  let dp = [];
-  for (let i = 0; i <= n; i++) {
-    dp.push(-1);
+  let array = input[1].trim().split(" ").map(Number);
+  array.sort((a, b) => a - b);
+  let res = 0;
+  for (let i = 1; i < array.length - 2; i++) {
+    let x = array[i + 2] - array[i]
+    res = Math.max(res, x);
   }
-  console.log(findit(n, dp));
+  console.log(res);
 }
-if (process.env.USERNAME === "adam") {
-  runProgram(`5`);
+if (process.env.USERNAME === "Dharmesh") {
+  runProgram(`4
+    5 10 6 8`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
