@@ -1,9 +1,27 @@
-function findit(array) {
-  let count = 0;
-  for (let i = 0; i < array.length - 1; i++) {
-    if (array[i] > array[i + 1]) count++;
+function findit(array, n) {
+  // let dp = [];
+  // for (let i = 0; i <= n; i++) {
+  //   dp.push(-1);
+  // }
+  // let res = 0;
+  // for (let i = 0; i < n; i++) {
+  //   let max = 0;
+  //   for (let j = 0; j < i; j++) {
+  //     if (array[j] < array[i]) {
+  //       if (dp[j] > max) max = dp[j];
+  //     }
+  //   }
+  //   dp[i] = max + 1;
+  //   if (dp[i] > res) res = dp[i];
+  // }
+  // console.log(res);
+  for(let i = 0;i< n;i++){
+    let count  = 0;
+    for(let j = 0;j< i;j++){
+      if(array[j] < array[i])count++
+    }
+    console.log(count);
   }
-  console.log(array.length - count);
 }
 
 function runProgram(input) {
@@ -13,8 +31,8 @@ function runProgram(input) {
   findit(array, n);
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`10
-  15 15 3 10 12 12 13 5 5 7`);
+  runProgram(`9
+  10 22 9 33 21 50 41 60 80`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

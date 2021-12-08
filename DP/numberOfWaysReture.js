@@ -1,9 +1,8 @@
 function findit(n, dp) {
-  // if(dp[n] == -1)return 1;
-  if (dp[n] != -1) return dp[n];
   if (n == 0) return 1;
   if (n < 0) return 0;
-  dp[n] = findit(n - 1, dp) + findit(n - 3, dp) + findit(n - 4, dp);
+  if (dp[n] != -1) return dp[n];
+  dp[n] = findit(n - 1, dp) + findit(n - 2, dp) + findit(n - 3, dp);
   return dp[n];
 }
 
@@ -16,7 +15,7 @@ function runProgram(input) {
   }
   console.log(findit(n, dp));
 }
-if (process.env.USERNAME === "adam") {
+if (process.env.USERNAME === "Dharmesh") {
   runProgram(`5`);
 } else {
   process.stdin.resume();

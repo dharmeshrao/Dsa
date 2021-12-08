@@ -1,23 +1,25 @@
-function findit(n, res) {
-  if (n <= 1) return n;
-  (res[0] = 0), (res[1] = 1);
-  for (let i = 2; i <= n; i++) {
-    res[i] = res[i - 1] + res[i - 2];
-  }
-  return res[n];
-}
-
 function runProgram(input) {
   input = input.trim().split("\n");
   let n = +input[0];
-  let res = [];
-  for (let i = 0; i <= n; i++) {
-    res.push(-1);
+  let array = input[1].trim().split(" ").map(Number);
+  let dp = Array(n + 1).fill(null);
+  dp[n] = 0;
+  for (let i = n - 1; i >= 0; i--) {
+    let min = Infinity;
+    for (let j = 1; j <= array[i] && i + j < dp.length; j++) {
+      if (dp[i + 1] != null) {
+        min = Math.min(min, dp[i + j]);
+      }
+    }
+    if (min != Infinity) {
+      dp[i] = min + 1;
+    }
   }
-  console.log(findit(n, res));
+  console.log(dp[0]);
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`4`);
+  runProgram(`11
+    1 3 5 8 9 2 6 7 6 8 9`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

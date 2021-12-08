@@ -1,23 +1,20 @@
-function findit(n, res) {
-  if (n <= 1) return n;
-  (res[0] = 0), (res[1] = 1);
-  for (let i = 2; i <= n; i++) {
-    res[i] = res[i - 1] + res[i - 2];
-  }
-  return res[n];
-}
-
 function runProgram(input) {
   input = input.trim().split("\n");
-  let n = +input[0];
-  let res = [];
-  for (let i = 0; i <= n; i++) {
-    res.push(-1);
+  let array = input[0].trim();
+  let dp = Array(array.length).fill(-1);
+  for (let i = 0; i < array.length; i++) {
+    let count = 0;
+    for (let j = i; j < array.length; j++) {
+      if (array[j] % 2 == 0) {
+        count++;
+      }
+    }
+    dp[i] = count;
   }
-  console.log(findit(n, res));
+  console.log(dp.join(" "));
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`4`);
+  runProgram(`574674546476`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
