@@ -1,38 +1,38 @@
 function max(a, b) {
   return a > b ? a : b;
 }
+function findit(limit, n, value, weight) {
+  let i, w;
+  let dp = new Array(n + 1);
+  for (i = 0; i <= n; i++) {
+    dp[i] = new Array(limit + 1);
+    for (w = 0; w <= limit; w++) {
+      if (i == 0 || w == 0) dp[i][w] = 0;
+      else if (weight[i - 1] <= w)
+        dp[i][w] = max(
+          value[i - 1] + dp[i - 1][w - weight[i - 1]],
+          dp[i - 1][w]
+        );
+      else dp[i][w] = dp[i - 1][w];
+    }
+  }
+  return dp[n][limit];
+}
+
 function runProgram(input) {
   input = input.trim().split("\n");
   let limit = +input[0];
   let n = +input[1];
   let value = input[2].trim().split(" ").map(Number);
   let weight = input[3].trim().split(" ").map(Number);
-  var dp = new Array(n + 1);
-  for (let i = 0; i < dp.length; i++) {
-    dp[i] = new Array(limit + 1);
-  }
-  for (let i = 0; i < n + 1; i++)
-    for (let j = 0; j < limit + 1; j++) dp[i][j] = -1;
-  function findit(limit, n, value, weight) {
-    if (n == 0 || limit == 0) return 0;
-    if (dp[n][limit] != -1) return dp[n][limit];
-    if (weight[n - 1] > limit)
-      return (dp[n][limit] = findit(limit, n - 1, value, weight));
-    else {
-      return (dp[n][limit] = max(
-        value[n - 1] + findit(limit - weight[n - 1], n - 1, value, weight),
-        findit(limit, n - 1, value, weight)
-      ));
-    }
-  }
   let x = findit(limit, n, value, weight);
   console.log(x);
 }
 if (process.env.USERNAME === "Dharmesh") {
   runProgram(`50 
-    3
-    60 100 120 
-    10 20 30`);
+      3
+      60 100 120 
+      10 20 30`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
