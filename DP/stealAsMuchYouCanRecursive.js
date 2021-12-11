@@ -1,7 +1,3 @@
-function max(a, b) {
-  return a > b ? a : b;
-}
-
 function findit(limit, n, value, weight) {
   if (n == 0 || limit == 0) return 0;
   if (weight[n - 1] > limit) return findit(limit, n - 1, value, weight);
@@ -12,6 +8,11 @@ function findit(limit, n, value, weight) {
     );
   }
 }
+
+function max(a, b) {
+    return a > b ? a : b;
+}
+
 
 function runProgram(input) {
   input = input.trim().split("\n");

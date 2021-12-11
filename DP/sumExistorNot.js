@@ -1,30 +1,42 @@
-function findit(array, k, res, curr, flag) {
-  if (res.length > 0) {
-    let sum = 0;
-    for (let i = 0; i < res.length; i++) {
-      sum += res[i];
+function matrix(sum, n) {
+  let dp = new Array(sum + 1);
+
+  for (let i = 0; i < sum + 1; i++) {
+    dp[i] = new Array(sum + 1);
+    for (let j = 0; j < n + 1; j++) {
+      dp[i][j] = 0;
     }
-    if (sum == k) flag.push(0);
   }
-  for (let i = curr; i < array.length; i++) {
-    res.push(array[i]);
-    findit(array, k, res, i + 1, flag);
-    res.pop();
+  return dp;
+}
+
+function findit(set, n, sum) {
+  let dp = matrix(sum, n);
+  // return dp;
+  for (let i = 0; i <= n; i++) dp[0][i] = true;
+  for (let i = 1; i <= sum; i++) dp[i][0] = false;
+  for (let i = 1; i <= sum; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = dp[i][j - 1];
+      if (i >= set[j - 1])
+        dp[i][j] = dp[i][j] || dp[i - set[j - 1]][j - 1];
+    }
   }
+  return dp[sum][n];
 }
 
 function runProgram(input) {
   input = input.trim().split("\n");
+  let n = +input[0];
   let array = input[1].trim().split(" ").map(Number);
-  let k = +input[2];
-  let flag = [];
-  findit(array, k, [], 0, flag);
-  flag.length > 0 ? console.log("yes") : console.log("no");
+  let sum = +input[2];
+  let x = findit(array, n, sum);
+  console.log(x);
 }
-if (process.env.USERNAME === "adam") {
+if (process.env.USERNAME === "Dharmesh") {
   runProgram(`9
     1 2 3 4 5 6 7 8 9
-    5`);
+    15`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

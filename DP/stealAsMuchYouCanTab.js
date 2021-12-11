@@ -1,12 +1,20 @@
 function max(a, b) {
   return a > b ? a : b;
 }
-function findit(limit, n, value, weight) {
-  let i, w;
-  let dp = new Array(n + 1);
-  for (i = 0; i <= n; i++) {
+function matrix(limit, n) {
+  var dp = new Array(n + 1);
+  for (let i = 0; i < dp.length; i++) {
     dp[i] = new Array(limit + 1);
-    for (w = 0; w <= limit; w++) {
+  }
+  for (let i = 0; i < n + 1; i++)
+    for (let j = 0; j < limit + 1; j++) dp[i][j] = -1;
+  return dp;
+}
+
+function findit(limit, n, value, weight) {
+  let dp = matrix(limit+ 1, n+1);
+  for (let i = 0; i <= n; i++) {
+    for (let w = 0; w <= limit; w++) {
       if (i == 0 || w == 0) dp[i][w] = 0;
       else if (weight[i - 1] <= w)
         dp[i][w] = max(
