@@ -5,21 +5,17 @@ function matrix(m, n) {
   }
   return dp;
 }
-function max(a, b) {
-  return a > b ? a : b;
-}
 
-function findit(str1, str2, m, n, dp) {
-  if (m == 0 || n == 0) return 0;
-  if (dp[m][n] != -1) return dp[m][n];
-  if (str1[m] == str2[n])
-    return (dp[m][n] = 1 + findit(str1, str2, m - 1, n - 1, dp));
-  else {
-    return (dp[m][n] = max(
-      findit(str1, str2, m - 1, n - 1, dp),
-      findit(str1, str2, m - 1, n, dp)
-    ));
+function findit(str1, str2, dp) {
+  for (let i = 1; i <= str1.length; i++) {
+    for (let j = 1; j <= str2.length; j++) {
+      dp[i][j] =
+        str1[i - 1] === str2[j - 1]
+          ? dp[i - 1][j - 1] + 1
+          : Math.max(dp[i - 1][j], dp[i][j - 1]);
+    }
   }
+  return dp[str1.length][str2.length];
 }
 
 function runProgram(input) {
@@ -29,13 +25,13 @@ function runProgram(input) {
   let m = str1.length,
     n = str2.length;
   let dp = matrix(n + 1, m + 1);
-  let x = findit(str1, str2, n, m, dp);
+  let x = findit(str1, str2, dp);
   console.log(x);
   //   console.log(dp);
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`eziowiomkvrrdzx
-  orugiebaolddavd`);
+  runProgram(`ghajf
+  mnmaqq`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

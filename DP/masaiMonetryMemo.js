@@ -1,24 +1,27 @@
+let obj = {};
+function findit(n) {
+  if (obj[n]) return obj[n];
+  if (n <= 0) return 0;
+  if (n == 1) return 1;
+  let a = findit(Math.floor(n / 2)),
+    b = findit(Math.floor(n / 3)),
+    c = findit(Math.floor(n / 4));
+  (obj[Math.floor(n / 2)] = a),
+    (obj[Math.floor(n / 3)] = b),
+    (obj[Math.floor(n / 4)] = c);
+  return Math.max(n, a + b + c);
+}
 function runProgram(input) {
   input = input.trim().split("\n");
-  let str1 = input[0].trim();
-  let str2 = input[1].trim();
-  let dp = Array(str1.length + 1).fill(0);
-  for (let i = 0; i < dp.length; i++) {
-    dp[i] = Array(str2.length + 1).fill(0);
+  for (let i = 0; i < input.length; i++) {
+    let n = +input[i];
+    console.log(findit(n));
   }
-  for (let i = 1; i < str1.length + 1; i++) {
-    for (let j = 1; j < str2.length + 1; j++) {
-      if (str1[i - 1] == str2[j - 1]) dp[i][j] = 1 + dp[i - 1][j - 1];
-      else {
-        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
-      }
-    }
-  }
-  console.log(dp[str1.length][str2.length]);
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`AEDFHR
-    ABCDGH`);
+  runProgram(`12
+  2
+  `);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
