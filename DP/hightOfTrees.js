@@ -1,27 +1,17 @@
 function findit(array, n) {
-  // let dp = [];
-  // for (let i = 0; i <= n; i++) {
-  //   dp.push(-1);
-  // }
-  // let res = 0;
-  // for (let i = 0; i < n; i++) {
-  //   let max = 0;
-  //   for (let j = 0; j < i; j++) {
-  //     if (array[j] < array[i]) {
-  //       if (dp[j] > max) max = dp[j];
-  //     }
-  //   }
-  //   dp[i] = max + 1;
-  //   if (dp[i] > res) res = dp[i];
-  // }
-  // console.log(res);
-  for(let i = 0;i< n;i++){
-    let count  = 0;
+  let dp = Array(n + 1).fill(-1);
+  let res = 0;
+  for(let i = 0;i< n; i++){
+    let max = 0;
     for(let j = 0;j< i;j++){
-      if(array[j] < array[i])count++
+      if(array[j] < array[i]){
+        if(dp[j] > max)max = dp[j]
+      }
     }
-    console.log(count);
+    dp[i] = max+1;
+    if(dp[i] > res)res = dp[i]
   }
+  console.log(res);
 }
 
 function runProgram(input) {

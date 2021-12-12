@@ -11,9 +11,7 @@ function runProgram(input) {
         min = Math.min(min, dp[i + j]);
       }
     }
-    if (min != Infinity) {
-      dp[i] = min + 1;
-    }
+    if (min != Infinity) dp[i] = min + 1;
   }
   console.log(dp[0]);
 }
