@@ -1,13 +1,13 @@
-function findit(array, n) {
-  array.sort((a, b) => a - b);
-  let mid = Math.floor(array.length / 2);
-  let sum = 0;
+function findit(ash, gary, n) {
+  ash.sort((a, b) => a - b);
+  gary.sort((a, b) => a - b);
+  let a = 0,
+    b = 0;
   for (let i = 0; i < n; i++) {
-    if (array[i] < array[mid]) sum += -1;
-    if (array[i] >= array[mid]) sum += array[mid];
+    if (ash[i] > gary[i]) a++;
+    if (gary[i] > ash[i]) b++;
   }
-
-  console.log(sum);
+  a > b ? console.log("a") : console.log("b");
 }
 
 function runProgram(input) {
@@ -16,16 +16,19 @@ function runProgram(input) {
   let line = 1;
   for (let i = 0; i < cases; i++) {
     let n = +input[line++];
-    let array = input[line++].trim().split(" ").map(Number);
-    findit(array, n);
+    let ash = input[line++].trim().split(" ").map(Number);
+    let gary = input[line++].trim().split(" ").map(Number);
+    findit(ash, gary, n);
   }
 }
 if (process.env.USERNAME === "Dharmesh") {
   runProgram(`2
     3
-    2 3 1
-    5
-    1 6 7 1 5`);
+    12 3 4
+    5 4 1
+    2
+    1 5
+    1 4`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

@@ -1,24 +1,28 @@
+function findit(array, n, k) {
+  let res = array[0];
+  let count = 0;
+
+  for (let i = 0; i < k; i++) {
+    if (array[i] != array[0]) count++;
+  }
+  if (count >= 1) console.log(k + 1 - count);
+  else console.log(k + 1);
+}
+
 function runProgram(input) {
   input = input.trim().split("\n");
-  let n = +input[0];
-  let array = input[1].trim().split(" ").map(Number);
-  let dp = Array(n + 1).fill(-1);
-  // let res = 0;
-  for (let i = 0; i < n; i++) {
-    let max = 0;
-    for (let j = 0; j < i; j++) {
-      if (array[j] < array[i]) {
-        if (dp[j] > max) max = dp[j];
-      }
-    }
-    dp[i] = max + 1;
-    // if (dp[i] > res) res = dp[i];
+  let cases = +input[0];
+  let line = 1;
+  for (let i = 0; i < cases; i++) {
+    let [n, k] = input[line++].trim().split(" ").map(Number);
+    let array = input[line++].trim().split(" ").map(Number);
+    findit(array, n, k);
   }
-  console.log(dp);
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`9
-    10 22 9 33 21 50 41 60 80`);
+  runProgram(`1
+    5 3
+    2 2 2 2 1`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
