@@ -1,28 +1,30 @@
-function findit(array, n, k) {
-  let res = array[0];
-  let count = 0;
-
-  for (let i = 0; i < k; i++) {
-    if (array[i] != array[0]) count++;
-  }
-  if (count >= 1) console.log(k + 1 - count);
-  else console.log(k + 1);
-}
-
 function runProgram(input) {
   input = input.trim().split("\n");
-  let cases = +input[0];
-  let line = 1;
-  for (let i = 0; i < cases; i++) {
-    let [n, k] = input[line++].trim().split(" ").map(Number);
-    let array = input[line++].trim().split(" ").map(Number);
-    findit(array, n, k);
+  let n = +input[0];
+  let array = input[1].trim().split("");
+  if (
+    array[0] == "a" ||
+    array[0] == "e" ||
+    array[0] == "i" ||
+    array[0] == "o" ||
+    array[0] == "u"
+  ) {
+    let hulk = "hulk";
+    for (let i = 0; i < hulk.length; i++) {
+      array.push(hulk[i]);
+    }
+    console.log(array.join(""));
+  } else {
+    let thor = "thor";
+    for (let i = 0; i < thor.length; i++) {
+      array.push(thor[i]);
+    }
+    console.log(array.join(""));
   }
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`1
-    5 3
-    2 2 2 2 1`);
+  runProgram(`5
+    abced`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
