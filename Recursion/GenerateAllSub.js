@@ -14,7 +14,7 @@ function runProgram(input) {
   let res = "";
   findit(str, current, res);
 }
-if (process.env.USERNAME === "adam") {
+if (process.env.USERNAME === "Dharmesh") {
   runProgram(`4
     abcd`);
 } else {
