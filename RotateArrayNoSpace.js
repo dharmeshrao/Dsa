@@ -1,10 +1,12 @@
 let array = [1,2,3,4,5,0,0]
-let k = 15;
+let k = 8;
 if(k > array.length)k = k % array.length
-let x = array.length - k;
-for(let i = x;i< array.length; i++){
-    let temp = array[x-i]
-    array[x-i] = array[i]
-    array[i] = temp
+let res = [];
+for(let i = k; i < array.length; i++){
+    res.push(array[i])
 }
-console.log(array);
+for(let i = 0;i < k; i++){
+    res.push(array[i])
+}
+
+console.log(res);
