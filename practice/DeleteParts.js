@@ -1,29 +1,21 @@
 function runProgram(input) {
   input = input.trim().split("\n");
-  let obj = {};
-  let array = []
-  for(let i = 1;i< input.length; i++){
-   let str = input[i].trim()
-  array.push(str)
+  let str = input[1].trim();
+  let res = "";
+  let [a, k] = input[2].trim().split(" ").map(Number);
+  for (let i = 0; i < str.length; i++) {
+    if (i < a) {
+      res += str[i];
+    }
+    if (i > k) res += str[i];
   }
-  let x = array;
-  array.sort()
-
-  for(let i = 0;i< array.length; i++){
-    let arr = array[i].split('').sort().join('')
-    if(obj[arr] == undefined)obj[arr] = i;
-    else obj[arr] = i;
-  }
-  console.log(x);
-  console.log(obj);
+  console.log(res);
 }
 if (process.env.USERNAME === "Dharmesh") {
   runProgram(`5
-    eodc
-    odec
-    code
-    baca
-    aabc`);
+    abcdef
+    1 3
+    `);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
