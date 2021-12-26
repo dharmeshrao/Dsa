@@ -1,19 +1,26 @@
 function runProgram(input) {
   input = input.trim().split("\n");
-  let array = [];
-  for (let i = 1; i < input.length; i++) {
-    array.push(input[i].trim());
+  let n = +input[0];
+  n = n - 80;
+  let three = Math.floor(50 / 3);
+  let five = Math.floor(100 / 5);
+  if (n <= 50) {
+    n = Math.floor(n / 3);
   }
-  array = array.reverse();
-  findit(array);
+  if (n > 50 && n <= 150) {
+    n = n - 50;
+    n = Math.floor(n / 5);
+    n += three;
+  }
+  if (n > 150) {
+    n = n - 150;
+    n = Math.floor(n / 10);
+    n += five + three;
+  }
+  console.log(n);
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`5
-    eodc
-    odec
-    code
-    baca
-    aabc`);
+  runProgram(`930`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
