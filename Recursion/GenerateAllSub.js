@@ -16,7 +16,7 @@ function runProgram(input) {
 }
 if (process.env.USERNAME === "Dharmesh") {
   runProgram(`4
-    abcd`);
+  adbcef`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
