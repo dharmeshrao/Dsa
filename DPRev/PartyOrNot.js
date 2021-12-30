@@ -1,33 +1,33 @@
-const findit = (array, k, n) => {
+function runProgram(input) {
+  input = input.trim().split("\n");
+  let [n, sum] = input[0].trim().split(" ").map(Number);
+  let array = input[1].trim().split(" ").map(Number);
   let dp = Array(n + 1).fill(-1);
   for (let i = 0; i < dp.length; i++) {
-    dp[i] = Array(k + 1).fill(-1);
+    dp[i] = Array(sum + 1).fill(-1);
   }
+
   for (let i = 0; i <= n; i++) {
-    for (let j = 0; j <= k; j++) {
-      if (j == 0) dp[i][j] = 1;
-      if (i == 0) dp[i][j] = 0;
+    for (let j = 0; j <= sum; j++) {
+      if (i == 0) dp[i][j] = false;
+      if (j == 0) dp[i][j] = true;
     }
   }
+
   for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= k; j++) {
+    for (let j = 1; j <= sum; j++) {
       if (array[i - 1] <= j) {
-        dp[i][j] = dp[i][j - array[i - 1]] + dp[i - 1][j];
+        dp[i][j] = dp[i - 1][j - array[i - 1]] || dp[i - 1][j];
       } else dp[i][j] = dp[i - 1][j];
     }
   }
-  console.log(dp[n][k]);
-};
 
-function runProgram(input) {
-  input = input.trim().split("\n");
-  let [k, n] = input[0].trim().split(" ").map(Number);
-  let array = input[1].trim().split(" ").map(Number);
-  findit(array, k, n);
+  let x = dp[n][sum];
+  x ? console.log("yes") : console.log("no");
 }
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`4 3
-    1 2 3`);
+  runProgram(`6 140
+    3 34 4 12 5 2`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
