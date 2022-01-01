@@ -1,31 +1,27 @@
-const findit = (mat, n) => {
-  let res = "";
-  let x = n;
-  for (let i = 0; i < n - 1; i++) res += mat[0][i] + " ";
-  for (let i = 0; i < n; i++) x--, (res += mat[i][x] + " ");
-  for (let i = 1; i < n; i++) res += mat[n - 1][i] + " ";
-  console.log(res);
+const prime = (n) => {
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    if (n % i == 0) count++;
+  }
+  return count == 2;
 };
-
 const runProgram = (input) => {
   input = input.trim().split("\n");
-  let cases = +input[0];
-  let line = 1;
-  for (let i = 0; i < cases; i++) {
-    let n = +input[line++];
-    let mat = [];
-    for (let j = 0; j < n; j++) {
-      mat.push(input[line++].trim().split(" ").map(Number));
+  let sum = 0;
+  let n = +input[0];
+  let array = input[1].trim().split(" ").map(Number);
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      if (prime(j - i)) {
+        sum += Math.abs(array[i] - array[j]);
+      }
     }
-    findit(mat, n);
   }
+  console.log(sum);
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`1
-3
-1 2 3
-4 5 6
-7 8 9`);
+  runProgram(`6
+    1 2 3 5 7 12`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

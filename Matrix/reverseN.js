@@ -1,9 +1,9 @@
 const findit = (mat, n) => {
   let res = "";
   let x = n;
-  for (let i = 0; i < n - 1; i++) res += mat[0][i] + " ";
-  for (let i = 0; i < n; i++) x--, (res += mat[i][x] + " ");
-  for (let i = 1; i < n; i++) res += mat[n - 1][i] + " ";
+  for (let i = 0; i < n - 1; i++) res += mat[i][0] + " ";
+  for (let i = 0; i < n; i++) x--, (res += mat[x][i] + " ");
+  for (let i = 1; i < n; i++) res += mat[i][n - 1] + " ";
   console.log(res);
 };
 
@@ -22,10 +22,10 @@ const runProgram = (input) => {
 };
 if (process.env.USERNAME === "Dharmesh") {
   runProgram(`1
-3
-1 2 3
-4 5 6
-7 8 9`);
+  3
+  1 2 3
+  4 5 6
+  7 8 9`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

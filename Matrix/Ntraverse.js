@@ -1,9 +1,8 @@
 const findit = (mat, n) => {
   let res = "";
-  let x = n;
-  for (let i = 0; i < n - 1; i++) res += mat[0][i] + " ";
-  for (let i = 0; i < n; i++) x--, (res += mat[i][x] + " ");
-  for (let i = 1; i < n; i++) res += mat[n - 1][i] + " ";
+  for (let i = n - 1; i >= 1; i--) res += mat[i][0] + " ";
+  for (let i = 0; i < n; i++) res += mat[i][i] + " ";
+  for (let i = n - 2; i >= 0; i--) res += mat[i][n - 1] + " ";
   console.log(res);
 };
 
