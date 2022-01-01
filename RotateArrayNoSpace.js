@@ -1,12 +1,17 @@
-let array = [1,2,3,4,5,0,0]
-let k = 8;
-if(k > array.length)k = k % array.length
-let res = [];
-for(let i = k; i < array.length; i++){
-    res.push(array[i])
+let objj = {
+  name: "Dharmesh",
+  age: 23,
+  person: { a: "dharmesh", b: "Ahir" },
+};
+let obj = {};
+for (key in objj) {
+  if (typeof objj[key] !== "object") {
+    if (obj[key] == undefined) obj[key] = objj[key];
+  } else {
+      let x = objj[key]
+    for(ket in x){
+        if(obj[ket] == undefined)obj[ket] = obj[x[ket]]
+    }
+  }
 }
-for(let i = 0;i < k; i++){
-    res.push(array[i])
-}
-
-console.log(res);
+console.log(obj);
