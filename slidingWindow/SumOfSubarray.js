@@ -1,35 +1,28 @@
-const findit = (array1, array2, n) => {
-  let i = 0,
-    j = n - 1,
-    count = 0;
-  while (i < n && j >= 0) {
-    if (array1[i] < array2[j]) i++;
-    else if (array1[i] > array2[j]) j--;
-    else {
-      count++;
-      i++;
-      j--;
-    }
+const findit = (l, r, array) => {
+  let sum = 0;
+  for (let i = l; i <= r; i++) {
+    sum += array[i];
   }
-  return count;
+  console.log(sum);
 };
 
 const runProgram = (input) => {
   input = input.trim().split("\n");
   let cases = +input[0];
-  let line = 1;
-  for (let i = 0; i < cases; i++) {
-    let n = +input[line++];
-    let array1 = input[line++].trim().split(" ").map(Number);
-    let array2 = input[line++].trim().split(" ").map(Number);
-    console.log(findit(array1, array2, n));
+  let array = input[1].trim().split(" ").map(Number);
+  for (let i = 3; i < input.length; i++) {
+    let [l, r] = input[i].trim().split(" ").map(Number);
+    findit(l - 1, r - 1, array);
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`1
-    6
-    1 2 2 3 4 5
-    4 4 3 2 1 1`);
+  runProgram(`4
+    3 2 1 5
+    4
+    1 3
+    2 4
+    1 4
+    3 3`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
