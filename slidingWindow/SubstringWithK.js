@@ -1,5 +1,4 @@
 function keepCheck(x, j, obj, str) {
-  let count = 0;
   for (let i = x; i < x + j; i++) {
     count++;
     if (str[i] !== undefined) {

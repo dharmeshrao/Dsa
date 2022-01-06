@@ -1,29 +1,25 @@
-const findit = (l, r, array) => {
-  let sum = 0;
-  while(l < r){
-    sum += array[l++]
-    sum += array[r--]
-  }
-  console.log(sum);
+const findit = (k, n) => {
+  if (n > k) return false;
+  if (n === k) return true;
+  return findit(k, n * 10) || findit(k, n * 20);
 };
 
 const runProgram = (input) => {
   input = input.trim().split("\n");
-  let cases = +input[0];
-  let array = input[1].trim().split(" ").map(Number);
-  for (let i = 3; i < input.length; i++) {
-    let [l, r] = input[i].trim().split(" ").map(Number);
-    findit(l - 1, r - 1, array);
+  let cases = +input[0],
+    line = 1;
+  for (let i = 0; i < cases; i++) {
+    let n = +input[line++];
+    findit(n, 1) ? console.log("Yes") : console.log("No");
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`4
-    3 2 1 5
-    4
-    1 3
-    2 4
-    1 4
-    3 3`);
+  runProgram(`5
+    1
+    2
+    10
+    25
+    200`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

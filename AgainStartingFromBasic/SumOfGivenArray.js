@@ -1,29 +1,26 @@
-const findit = (l, r, array) => {
-  let sum = 0;
-  while(l < r){
-    sum += array[l++]
-    sum += array[r--]
-  }
-  console.log(sum);
+const findSum = (array, n) => {
+  if (n < 0) return 0;
+  return findSum(array, n - 1) + array[n];
 };
 
 const runProgram = (input) => {
   input = input.trim().split("\n");
   let cases = +input[0];
-  let array = input[1].trim().split(" ").map(Number);
-  for (let i = 3; i < input.length; i++) {
-    let [l, r] = input[i].trim().split(" ").map(Number);
-    findit(l - 1, r - 1, array);
+  let line = 1;
+  for (let i = 0; i < cases; i++) {
+    let n = +input[line++];
+    let array = input[line++].trim().split(" ").map(Number);
+    console.log(findSum(array, n - 1));
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`4
-    3 2 1 5
-    4
-    1 3
-    2 4
-    1 4
-    3 3`);
+  runProgram(`3
+    5
+    6 3 8 2 -4
+    5
+    -10 -7 10 2 -2
+    5
+    -4 -5 6 -3 9`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
