@@ -28,6 +28,7 @@ const findit = (array, n) => {
       }
     }
   }
+  console.log(res1);
   for (let i = 0; i < res1.length; i++) {
     if (res1[i][0] === -1) res1[i] = res2[i];
     if (res2[i][0] === -1) res2[i] = res1[i];
@@ -39,7 +40,7 @@ const findit = (array, n) => {
     else final.push(-1);
   }
   //   console.log(res1);
-  console.log(final.join(" "));
+//   console.log(final.join(" "));
 };
 
 const runProgram = (input) => {

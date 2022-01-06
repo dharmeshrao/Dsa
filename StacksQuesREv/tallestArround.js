@@ -1,26 +1,48 @@
-const runProgram = (input)=> {
-   
-   
+const findit = (array, n, k) => {
+  let res = [];
+  for (let i = 0; i < n; i++) {
+    let count = 0;
+    let max = 0;
+    for (let j = 0; j < k; j++) {
+      if (array[i + count] !== undefined) {
+        max = Math.max(max, array[i + count]);
+        count++;
+      }
+    }
+    if (count === k) res.push(max);
   }
-  if (process.env.USERNAME === "Dharmesh") {
-    runProgram(``);
-  } else {
-    process.stdin.resume();
-    process.stdin.setEncoding("ascii");
-    let read = "";
-    process.stdin.on("data", function (input) {
-      read += input;
-    });
-    process.stdin.on("end", function () {
-      read = read.replace(/\n$/, "");
-      read = read.replace(/\n$/, "");
-      runProgram(read);
-    });
-    process.on("SIGINT", function () {
-      read = read.replace(/\n$/, "");
-      runProgram(read);
-      process.exit(0);
-    });
+  console.log(res.join(" "));
+};
+
+const runProgram = (input) => {
+  input = input.trim().split("\n");
+  let cases = +input[0];
+  let line = 1;
+  for (let i = 0; i < cases; i++) {
+    let [n, k] = input[line++].trim().split(" ").map(Number);
+    let array = input[line++].trim().split(" ").map(Number);
+    findit(array, n, k);
   }
-  
-  
+};
+if (process.env.USERNAME === "Dharmesh") {
+  runProgram(`1
+    9 3
+    1 2 3 1 4 5 2 3 6`);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}
