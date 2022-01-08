@@ -1,13 +1,13 @@
-function traverseLshape(mat, r, c) {
-  let res = "",
-    j = 0;
-  while (j < c) {
-    for (var i = 0; i <= r - j - 1; i++) res += mat[i][j] + " ";
-    for (var k = j + 1; k < c; k++) res += mat[r - 1 - j][k] + " ";
-    j++;
-  }
-  console.log(res);
+const findMat = (mat,r,c)=>{
+    let down = r-1,left = 0,right = c-1;
+    let count = 0,res = '';
+    while(count < r*c && left < c && down >= 0){
+    for(let i = 0;i<= down;i++)res += mat[i][left] + " ";left++, count++;
+    for(let i = left;i<= right; i++)res += mat[down][i] + " ";down--,count++;
+    }
+    console.log(res);
 }
+
 
 const runProgram = (input) => {
   input = input.trim().split("\n");
@@ -19,7 +19,7 @@ const runProgram = (input) => {
     for (let j = 0; j < r; j++) {
       mat.push(input[line++].trim().split(" ").map(Number));
     }
-    traverseLshape(mat, r, c);
+    findMat(mat, r, c);
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
@@ -28,11 +28,11 @@ if (process.env.USERNAME === "Dharmesh") {
     1 2 3
     4 5 6
     7 8 9
-    4 3
-    1 2 3
-    4 5 6
-    7 8 9
-    10 11 12`);
+    4 5
+    1 2 3 2 3
+    4 5 6 5 6
+    7 8 9 8 9
+    10 11 12 7 8`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
