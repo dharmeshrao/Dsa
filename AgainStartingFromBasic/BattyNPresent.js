@@ -1,10 +1,18 @@
+const findBetty = (array,n,k)=>{
+    if(n == 0 || k == 0)return 0;
+    if(array[n-1] < k)return 1 + findBetty(array,n-1,k);
+    else return 1 + findBetty(array,n-1,k-array[n-1]) || findBetty(array,n-1,k)
+}
+
 const runProgram = (input)=> {
-  input = input.trim().split('')
-   
-   
+  input = input.trim().split('\n')
+   let [n, k] = input[0].trim().split(' ').map(Number)
+   let array = input[1].trim().split(' ').map(Number)
+   console.log(findBetty(array,n,k));
   }
   if (process.env.USERNAME === "Dharmesh") {
-    runProgram(``);
+    runProgram(`3 11
+    1 5 7`);
   } else {
     process.stdin.resume();
     process.stdin.setEncoding("ascii");
