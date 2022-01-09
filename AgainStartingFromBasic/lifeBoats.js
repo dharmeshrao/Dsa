@@ -1,35 +1,32 @@
-const findMax = (array) => {
-  let a = 0,
-    b = 0,
-    flag = true;
-  for (let i = 0; i < array.length; i++) {
-    flag ? (a += array[i]) : (b += array[i]);
-    if (array[i] % 2 != 0) flag = flag ? false : true;
-    if ((i + 1) % 6 == 0) flag = flag ? false : true;
+const findBoats = (array, n, k) => {
+  array.sort((a, b) => a - b);
+  let i = 0,
+    j = n - 1;
+  let sum = 0;
+  while (i <= j) {
+    sum++;
+    if (array[i] + array[j] <= k) i++;
+    j--;
   }
-  if (a > b) console.log("AB de Villiers");
-  else if (b > a) console.log("Virat Kohli");
-  else console.log("Tie");
+  console.log(sum);
 };
 
 const runProgram = (input) => {
   input = input.trim().split("\n");
-  let cases = +input[0];
-  let line = 1;
+  let cases = +input[0],
+    line = 1;
   for (let i = 0; i < cases; i++) {
-    let n = +input[line++];
+    let [n, k] = input[line++].trim().split(" ").map(Number);
     let array = input[line++].trim().split(" ").map(Number);
-    findMax(array);
+    findBoats(array, n, k);
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`3
-  2
-  1 2 0 0 1 1 6 6 4 1 6 1
-  3
-  0 0 0 0 0 1 0 0 0 0 1 1 6 6 6 1 4 4
-  1
-  0 1 0 1 0 0`);
+  runProgram(`2
+    4 5
+    3 5 3 4
+    4 3
+    1 2 2 3`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
