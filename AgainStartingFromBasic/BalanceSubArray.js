@@ -1,7 +1,17 @@
-const findAB = (n, k) => {
-  if (n > k) return false;
-  if (n === k) return true;
-  return findAB(n * 10 + 1, k) || findAB(n * 2, k);
+const findSub = (array, n) => {
+  let map = new Map();
+  map.set(0, -1);
+  let sum = 0;
+  let max = 0;
+  for (let i = 0; i < array.length; i++) {
+    array[i] === 1 ? (sum += 1) : (sum += -1);
+    if (map.has(sum)) {
+      max = Math.max(max, i - map.get(sum));
+    } else {
+      map.set(sum, i);
+    }
+  }
+  console.log(max);
 };
 
 const runProgram = (input) => {
@@ -9,16 +19,15 @@ const runProgram = (input) => {
   let cases = +input[0],
     line = 1;
   for (let i = 0; i < cases; i++) {
-    let [n, k] = input[line++].trim().split(" ").map(Number);
-    findAB(n, k) ? console.log("Yes") : console.log("No");
+    let n = +input[line++];
+    let array = input[line++].trim().split(" ").map(Number);
+    findSub(array, n);
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`4
-    6 242
-    3 3
-    6 3
-    10 30`);
+  runProgram(`1
+    5
+    1 0 0 1 0`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
