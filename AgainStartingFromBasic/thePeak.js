@@ -1,20 +1,11 @@
-const findSub = (array, n) => {
-  let map = new Map();
-  map.set(0, -1);
-  let sum = 0;
-  let max = 0;
-  for (let i = 0; i < array.length; i++) {
-    array[i] === 1 ? (sum += 1) : (sum += -1);
-    console.log(sum);
-    if (map.has(sum)) {
-      max = Math.max(max, i - map.get(sum));
-    } else {
-      map.set(sum, i);
+const findPead = (array, n) => {
+  for (let i = 0; i < n; i++) {
+    if (array[i] > array[i + 1]) {
+      console.log(i);
+      break;
     }
   }
-  // console.log(max);
 };
-
 const runProgram = (input) => {
   input = input.trim().split("\n");
   let cases = +input[0],
@@ -22,13 +13,15 @@ const runProgram = (input) => {
   for (let i = 0; i < cases; i++) {
     let n = +input[line++];
     let array = input[line++].trim().split(" ").map(Number);
-    findSub(array, n);
+    findPead(array, n);
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`1
+  runProgram(`2
+    3
+    10 20 11
     5
-    1 0 0 1 0`);
+    1 3 6 5 4`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

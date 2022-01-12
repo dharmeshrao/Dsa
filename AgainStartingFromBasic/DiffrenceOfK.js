@@ -1,18 +1,16 @@
-const findSub = (array, n) => {
-  let map = new Map();
-  map.set(0, -1);
-  let sum = 0;
-  let max = 0;
-  for (let i = 0; i < array.length; i++) {
-    array[i] === 1 ? (sum += 1) : (sum += -1);
-    console.log(sum);
-    if (map.has(sum)) {
-      max = Math.max(max, i - map.get(sum));
-    } else {
-      map.set(sum, i);
-    }
+const findDifference = (array, n, k) => {
+  let count = 0,
+    i = 0,
+    j = 0;
+  while (j < n) {
+    if (array[j] - array[i] == k) {
+      count++;
+      i++;
+      j++;
+    } else if (array[j] - array[i] > k) i++;
+    else j++;
   }
-  // console.log(max);
+  count > 0 ? console.log("Yes") : console.log("No");
 };
 
 const runProgram = (input) => {
@@ -20,15 +18,17 @@ const runProgram = (input) => {
   let cases = +input[0],
     line = 1;
   for (let i = 0; i < cases; i++) {
-    let n = +input[line++];
+    let [n, k] = input[line++].trim().split(" ").map(Number);
     let array = input[line++].trim().split(" ").map(Number);
-    findSub(array, n);
+    findDifference(array, n, k);
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`1
-    5
-    1 0 0 1 0`);
+  runProgram(`2
+    5 3
+    1 2 3 4 5
+    5 8
+    1 2 3 4 5 `);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");

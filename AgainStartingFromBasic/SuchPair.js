@@ -1,18 +1,13 @@
-const findSub = (array, n) => {
-  let map = new Map();
-  map.set(0, -1);
-  let sum = 0;
-  let max = 0;
-  for (let i = 0; i < array.length; i++) {
-    array[i] === 1 ? (sum += 1) : (sum += -1);
-    console.log(sum);
-    if (map.has(sum)) {
-      max = Math.max(max, i - map.get(sum));
-    } else {
-      map.set(sum, i);
-    }
+const findSum = (array, n, k) => {
+    array.sort((a, b) => a - b)
+  let i = 0,
+    j = n - 1;
+  while (i < j) {
+    if (array[i] + array[j] == k) return 1;
+    else if (array[i] + array[j] < k) i++;
+    else j--;
   }
-  // console.log(max);
+  return -1;
 };
 
 const runProgram = (input) => {
@@ -20,15 +15,17 @@ const runProgram = (input) => {
   let cases = +input[0],
     line = 1;
   for (let i = 0; i < cases; i++) {
-    let n = +input[line++];
+    let [n, k] = input[line++].trim().split(" ").map(Number);
     let array = input[line++].trim().split(" ").map(Number);
-    findSub(array, n);
+    console.log(findSum(array, n, k));
   }
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`1
-    5
-    1 0 0 1 0`);
+  runProgram(`2
+  5 3
+  1 2 3 4 5
+  5 8
+  1 2 3 4 5 `);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
