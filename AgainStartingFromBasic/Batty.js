@@ -1,10 +1,15 @@
 const findit = (n, k, res, current, flag) => {
-  if (res.length == k) flag.push(res.join(" "));
-  for (let i = current; i <= n; i++) {
+  if (res.length == k) {
+    let sum = 0;
+    for (let i = 0; i < res.length; i++) sum += res[i];
+    if (sum == n) flag.push(res.join(" "));
+  }
+  for (let i = current; i <= 9; i++) {
     res.push(i);
     findit(n, k, res, i + 1, flag);
     res.pop();
   }
+  return flag;
 };
 
 const runProgram = (input) => {
@@ -12,17 +17,12 @@ const runProgram = (input) => {
   let [n, k] = input[0].trim().split(" ").map(Number),
     flag = [];
   findit(n, k, [], 1, flag);
-  for (let i = 0; i < flag.length; i++) {
-    let sum = 0;
-    let x = flag[i];
-    for (let j = 0; j < x.length; j++) {
-      sum += +x[j];
-    }
-    if (sum === n) console.log(x);
-  }
+  if (flag.length > 0)
+    for (let i = 0; i < flag.length; i++) console.log(flag[i]);
+  else console.log(-1);
 };
 if (process.env.USERNAME === "Dharmesh") {
-  runProgram(`8 2`);
+  runProgram(`40 2`);
 } else {
   process.stdin.resume();
   process.stdin.setEncoding("ascii");
