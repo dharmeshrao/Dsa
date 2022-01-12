@@ -1,3 +1,10 @@
-const biDimensionalArr = [11, [22, 33], [44, 55], [66, 77], 88, 99];
-const flattenArr = [].concat(...biDimensionalArr); // [11, 22, 33, 44, 55, 66, 77, 88, 99]
-console.log(flattenArr);
+const arr = [11, [22, 33, [4, [5, 6, 7, [7]]]], [44, 55], [66, 77], 88, 99];
+let res = [];
+function yess() {
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) yess(arr[i]);
+    else res.push(arr[i]);
+  }
+}
+yess();
+console.log(res);
