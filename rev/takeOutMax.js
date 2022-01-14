@@ -1,12 +1,12 @@
 const runProgram = (input) => {
   input = input.trim().split("\n");
   let [n, k] = input[0].trim().split(" ").map(Number);
-  let array = input[1].trim().split(" ").map(Number);
+  let nums = input[1].trim().split(" ").map(Number);
   let sum = 0;
-  for (let i = 0; i < k; i++) sum += array[i];
+  for (let i = 0; i < k; i++) sum += nums[i];
   let max = sum;
   for (let i = k; i < n; i++) {
-    sum += array[i] - array[i - k];
+    sum += nums[i] - nums[i - k];
     max = Math.max(max, sum);
   }
   console.log(max);
