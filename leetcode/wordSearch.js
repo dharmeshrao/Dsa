@@ -21,13 +21,13 @@ let boardValue = Object.values(obj);
 let resKey = Object.keys(res);
 let resValue = Object.values(res);
 let count = 0;
-for(let i = 0;i< resKey.length;i++){
-    for(let j = 0;j< boardKey.length; j++){
-        if(resKey[i] == boardKey[j]){
-            if(resValue[i] <= boardValue[j])count += resValue[i];
-            else return false;
-        }
+for (let i = 0; i < resKey.length; i++) {
+  for (let j = 0; j < boardKey.length; j++) {
+    if (resKey[i] == boardKey[j]) {
+      if (resValue[i] <= boardValue[j]) count += resValue[i];
+      else return false;
     }
+  }
 }
 
 console.log(count);
