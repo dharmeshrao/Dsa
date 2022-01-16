@@ -1,14 +1,10 @@
 const findit = (n) => {
   if (n == 1) return true;
   if (n <= 9) return false;
-  // if(n > 9){
   let x = n.toString().split("").map(Number);
   let sum = 0;
   for (let i = 0; i < x.length; i++) sum += x[i] * x[i];
   return findit(sum);
-  // console.log(sum);
-  // }
-  // else findit(n * n)
 };
 
 const runProgram = (input) => {
