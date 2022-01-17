@@ -1,15 +1,14 @@
 const runProgram = (input)=> {
   input = input.trim().split('\n')
    let cases = +input[0],line = 1;
-   let obj = {},res = [];
+   let obj = {};
    for(let i = 0;i< cases; i++){
        let array = input[line++].trim()
-       if(!obj[array.split("").sort().join("")]){obj[array.split("").sort().join("")] = 1;res.push(array)}
+       if(!obj[array.split("").sort().join("")]){obj[array.split("").sort().join("")] = array;}
    }
-   res.sort()
+   let res = Object.values(obj).sort((a, b) => a - b)
    console.log(res.length);
    res.map((e)=>console.log(e))
-   
   }
   if (process.env.USERNAME === "Dharmesh") {
     runProgram(`5
