@@ -1,12 +1,15 @@
 function findit(array, n) {
-  for (let i = 0; i < array.length; i++) {
-    for (let j = i; j < n - i - 1; j++) {
-      if (array[i] > array[j]) {
-        [array[i], array[j]] = [array[j], array[i]];
+  for (let i = 0; i < n; i++) {
+    let flag = false;
+    for (let j = 0; j < n - i - 1; j++) {
+      if (array[j] > array[j + 1]) {
+        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+        flag = true;
       }
     }
+    if (!flag) break;
   }
-  console.log(array.join(' '));
+  console.log(...array);
 }
 
 function runProgram(input) {
@@ -15,7 +18,7 @@ function runProgram(input) {
   let array = input[1].trim().split(" ").map(Number);
   findit(array, n);
 }
-if (process.env.USERNAME === "adam") {
+if (process.env.USERNAME === "Dharmesh") {
   runProgram(`5
     3 5 0 9 8`);
 } else {
