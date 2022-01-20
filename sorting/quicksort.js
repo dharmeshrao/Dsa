@@ -1,9 +1,9 @@
 function findit(array, l, h) {
-  if (l < h) {
-    let pivot = partition(array, l, h);
-    findit(array, l, pivot - 1);
-    findit(array, pivot + 1, h);
-  }
+if( l < h){
+  let pivot = partition(array,l,h)
+  findit(array,l , pivot-1)
+  findit(array,pivot+1,h)
+}
 }
 function partition(array, l, h) {
   let pivot = array[l];
@@ -24,9 +24,10 @@ function runProgram(input) {
   input = input.trim().split("\n");
   let n = +input[0];
   let array = input[1].trim().split(" ").map(Number);
-  findit(array, 0, 4);
+  findit(array, 0, 4)
+  console.log(array);
 }
-if (process.env.USERNAME === "adam") {
+if (process.env.USERNAME === "Dharmesh") {
   runProgram(`5
       3 5 0 9 8`);
 } else {
