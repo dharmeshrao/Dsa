@@ -1,25 +1,22 @@
-const findMat =(array,n)=>{
-  let sum = 0;
-  for(let i = 0; i < array.length; i+=(n-1)){
-    sum += array[i]
-  }
-  console.log(sum);
+const findGcd = (n)=>{
+if(n % 2 == 0)return Math.floor(n/2)
+return Math.floor(n/2)
 }
-
 
 const runProgram = (input)=> {
   input = input.trim().split('\n')
    let cases = +input[0],line = 1;
-   for (let i = 0; i < cases; i++) {
-       let n = +input[line++],array = input[line++].trim().split(" ").map(Number)
-       findMat(array,n)
+   for(let i = 0; i < cases; i++){
+       let n = +input[line++];
+       console.log(findGcd(n));
    }
    
   }
   if (process.env.USERNAME === "Dharmesh") {
-    runProgram(`1
-    4
-    1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10`);
+    runProgram(`3
+    2
+    11
+    12`);
   } else {
     process.stdin.resume();
     process.stdin.setEncoding("ascii");
