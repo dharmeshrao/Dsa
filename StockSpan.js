@@ -1,6 +1,7 @@
 const findStock = (array,n)=>{
     let res = [1],stack = [0];
     for (let i = 1; i < n; i++){
+        console.log(stack);
         while(stack.length > 0 && array[stack[stack.length - 1]] <= array[i])stack.pop();
         stack.length === 0 ? res.push(i+1) : res.push(i-stack[stack.length - 1] )
         stack.push(i)
@@ -15,7 +16,6 @@ const runProgram = (input)=> {
        let n = +input[line++],array = input[line++].trim().split(" ").map(Number);
        findStock(array,n)
    }
-   
   }
   if (process.env.USERNAME === "Dharmesh") {
     runProgram(`2
