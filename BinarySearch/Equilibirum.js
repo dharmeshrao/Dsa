@@ -1,29 +1,24 @@
-const findIfSorted = (array, low,high)=>{
-    while(low <= high){
-        let mid = Math.floor(low + (high - low) / 2);
-        if(array[mid] > array[mid + 1])return mid +1;
-        if(array[mid] < array[mid-1])return mid;
-        if(array[mid] > array[0])low = mid + 1;
-        else high = mid - 1;
+const findEquillibirum = (array,n)=>{
+    for(let i = 0;i< n; i++){
+        let sum1 = 0,sum2 = 0;
+        for(let j = 0;j < n; j++){
+            if(j < i)sum1 += array[j];
+            if(j > i)sum2 += array[j];
+        }
+        if(sum1 === sum2)return i+1;
     }
-    return -1
+    return -1;
 }
 
 const runProgram = (input)=> {
   input = input.trim().split('\n')
    let n = +input[0],array = input[1].trim().split(' ').map(Number);
-   let mid = findIfSorted(array,0,n-1);
-   if(mid === -1){console.log("NO")}
-   else{
-    let left = findIfSorted(array,0,mid-1)
-    let right = findIfSorted(array,mid,n-1);
-    if(left === right)console.log("YES");
-    else console.log("NO")
-   }
+   console.log(findEquillibirum(array,n));
+   
   }
   if (process.env.USERNAME === "Dharmesh") {
-    runProgram(`6
-    3 4 10 7 9 1 1 2`);
+    runProgram(`5
+    3 3 5 5 1`);
   } else {
     process.stdin.resume();
     process.stdin.setEncoding("ascii");
