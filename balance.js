@@ -20,7 +20,7 @@ const runProgram = (input)=> {
    }
    var marks = [50, 20, 70, 60, 45, 30];
 
-console.log(Math.max(null, marks));
+console.log(Math.max.apply(null,marks));
    //console.log(parseInt("2,5"));
   }
   if (process.env.USERNAME === "Dharmesh") {
