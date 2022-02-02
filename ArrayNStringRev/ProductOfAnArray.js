@@ -1,12 +1,23 @@
+const ProductOfAnArray = (array,n)=>{
+    let prod = 1,res = [];
+    for(let i = 0;i< n; i++)prod *= array[i];
+    for(let i = 0;i < n; i++)res.push(prod/ array[i]);
+    console.log(...res);
+}
 const runProgram = (input)=> {
   input = input.trim().split('\n')
-   let str1 = input[0].trim().split("").sort().join("")
-   let str2 = input[1].trim().split("").sort().join("")
-   console.log(str1 === str2 ? "Yes" : "No");
+   let cases = +input[0],line = 1;
+   for(let i = 0; i < cases; i++){
+       let n = +input[line++],array = input[line++].trim().split(" ").map(Number);
+       ProductOfAnArray(array,n)
+   }
   }
   if (process.env.USERNAME === "Dharmesh") {
-    runProgram(`amit
-    mtia`);
+    runProgram(`2
+    5
+    1 2 3 4 5
+    3
+    3 2 7`);
   } else {
     process.stdin.resume();
     process.stdin.setEncoding("ascii");
