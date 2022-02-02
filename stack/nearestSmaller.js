@@ -2,27 +2,27 @@ const NearestSmaller = (array,n)=>{
     let stack = [],res1 = [],res2 = [],index = [];
     for(let i = n - 1; i >= 0; i--){
         while(stack.length > 0 && stack[stack.length - 1][0] >= array[i]) stack.pop();
-        stack.length > 0 ? res1.push(stack[stack.length - 1][1]) : res1.push(-1)
+        stack.length > 0 ? res1.push([ i - stack[stack.length - 1][1],stack[stack.length - 1]]) : res1.push(-1)
         stack.push([array[i],i])
     }
     stack.length = 0;
     for(let i = 0; i < n; i++){
         while(stack.length > 0 && stack[stack.length - 1][0] >= array[i]) stack.pop();
-        stack.length > 0 ? res2.push(stack[stack.length - 1][1]) : res2.push(-1)
+        stack.length > 0 ? res2.push([i - stack[stack.length - 1][1],stack[stack.length - 1]]) : res2.push(-1)
         stack.push([array[i],i])
     }
     res1 = res1.reverse()
-    console.log(res1,res2);
+    console.log(res1);
+    console.log(res2);
 }
-
 const runProgram = (input)=> {
   input = input.trim().split('\n')
-   let cases = +input[0],line = 1
+   let cases = +input[0],line = 1;
    for(let i = 0;i< cases; i++){
-       let n = +input[line++],array = input[line++].trim().split(" ").map(Number)
+       let n = +input[line++],array = input[line++].trim().split(" ").map(Number);
        NearestSmaller(array,n)
-   }
-  }
+    };
+  };
   if (process.env.USERNAME === "Dharmesh") {
     runProgram(`1
     8

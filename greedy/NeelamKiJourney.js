@@ -1,19 +1,16 @@
-function findit(n,dp) {
-  if (n == 0) return 1;
-  if (n < 0) return 0;
-  if(dp[n] != -1)return dp[n];
-  return dp[n] = findit(n - 1,dp) + findit(n - 3,dp) + findit(n - 4,dp);
-}
-
 const runProgram = (input)=> {
   input = input.trim().split('\n')
-  let n = +input[0];
-  let dp = Array(n + 1).fill(-1)
-   console.log(findit(n,dp));
-   
+   let n = +input[0],array = input[1].trim().split(' ').map(Number);
+   let sum = 0;
+   for(let i = 0; i < n; i++){
+       if(array[i] < array[0])array[0] = array[i];
+       sum += array[0]
+   }
+   console.log(sum);
   }
   if (process.env.USERNAME === "Dharmesh") {
-    runProgram(`5`);
+    runProgram(`5
+    4 7 8 3 4`);
   } else {
     process.stdin.resume();
     process.stdin.setEncoding("ascii");
