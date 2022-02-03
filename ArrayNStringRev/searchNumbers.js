@@ -1,6 +1,9 @@
 const runProgram = (input)=> {
-  input = input.trim().split('')
-   
+  input = input.trim().split('\n')
+  let n = +input[0],array = input[1].trim().split(' ').map(Number).sort((a, b)=> a - b);
+  let obj = {}
+  for(let i = 0;i< n; i++)!obj[array[i]] ? obj[array[i]] = i : obj[array[i]] = i;
+   console.log(obj);
    
   }
   if (process.env.USERNAME === "Dharmesh") {

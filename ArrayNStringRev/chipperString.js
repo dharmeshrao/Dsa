@@ -1,19 +1,29 @@
-function findit(n,dp) {
-  if (n == 0) return 1;
-  if (n < 0) return 0;
-  if(dp[n] != -1)return dp[n];
-  return dp[n] = findit(n - 1,dp) + findit(n - 3,dp) + findit(n - 5,dp);
+const ChiperString = (str,n)=>{
+    let count = 0,res = "";
+    for(let i = 0; i < n; i++){
+        count++;
+        if(str[i] != str[i+1]){
+            res += str[i] + count
+        }
+    }
+    console.log(res);
 }
 
 const runProgram = (input)=> {
   input = input.trim().split('\n')
-  let n = +input[0];
-  let dp = Array(n + 1).fill(-1)
-   console.log(findit(n,dp));
+   let cases = +input[0],line = 1;
+   for(let i = 0; i < cases; i++){
+       let n = +input[line++],str = input[line++].trim()
+       ChiperString(str,n)
+   }
    
   }
   if (process.env.USERNAME === "Dharmesh") {
-    runProgram(`7`);
+    runProgram(`2
+    5
+    aabcc
+    5
+    aazaa`);
   } else {
     process.stdin.resume();
     process.stdin.setEncoding("ascii");
