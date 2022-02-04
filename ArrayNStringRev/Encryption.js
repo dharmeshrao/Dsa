@@ -35,6 +35,7 @@ function runProgram(input) {
   }
 
   console.log(str.join(""));
+  console.table(str)
 }
 if (process.env.USERNAME === "Dharmesh") {
   runProgram(`All-convoYs-9-be:Alert1.

@@ -1,27 +1,25 @@
-const PrimeCheck = (n)=>{
-    let count = 0;
-    for(let i = 1; i <= n; i++)if(n % i === 0)count++;
-    return count === 2;
+const detectPalindrome = (str,n)=>{
+    let obj = {},count = 0;
+    for(let i = 0; i < n; i++)!obj[str[i]] ? obj[str[i]] = 1 : obj[str[i]]++;
+    for(key in obj)if(obj[key] % 2 != 0)count++;
+    return count <= 1
 }
 
 const runProgram = (input)=> {
   input = input.trim().split('\n')
-   let [r,c] = input[0].trim().split(" ").map(Number);
-   let mat = [],count = 0,index = 0,res = [];
-   for(let i = 1;i< input.length; i++)mat.push(input[i].trim().split(" ").map(Number));
-   for(let i = 0;i< (r*c);i++){
-       count++;
-       if(i % c === 0)count = 1,index++;
-       
-       if(PrimeCheck(mat[index-1][count-1]))res.push(mat[index-1][count-1])
+   let cases = +input[0],line = 1;
+   for(let i = 0; i < cases; i++){
+       let n = +input[line++],str = input[line++].trim()
+       detectPalindrome(str,n) ? console.log("Yes") : console.log("No");
    }
-   console.log(res.length);
+   
   }
   if (process.env.USERNAME === "Dharmesh") {
-    runProgram(`3 5
-    1 2 3 4 13
-    4 5 6 5 17
-    7 8 9 9 23`);
+    runProgram(`2
+    6
+    aabbcc
+    5
+    aabcd`);
   } else {
     process.stdin.resume();
     process.stdin.setEncoding("ascii");

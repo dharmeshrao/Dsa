@@ -35,3 +35,26 @@
     </div>
 </body>
 </html>
+
+<script>
+var timeout = [];
+function fun(){
+    console.log("first")
+    timeout.push(setTimeout(()=>{
+        console.log("Second")
+    },5000))
+    console.log("Third")
+    timeout.push(setTimeout(()=>{
+        console.log("Fourth")
+    },3000))
+    console.log("Fifth")
+    timeout.push(setTimeout(()=>{
+        console.log("Six")
+    },1000))
+    for(var i = 0;i< timeout.length;i++)clearTimeout(timeout[i])
+}
+
+let aa =
+fun()
+
+</script>
