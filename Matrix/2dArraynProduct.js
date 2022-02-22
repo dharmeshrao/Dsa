@@ -18,7 +18,7 @@ const runProgram = (input)=> {
    }
    for(let i = 0;i< mat.length-1;i++){n--;prod *= mat[i][n]}
    if(prod === k)count++;
-  console.log(count);
+  // console.log(count);
   }
   if (process.env.USERNAME === "Dharmesh") {
     runProgram(`4 4 16
